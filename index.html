@@ -1,537 +1,854 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>SUBHAM SHIT — BCA Student & Developer</title>
-    <meta
-      name="description"
-      content="SUBHAM SHIT is a BCA student from Medinipur, West Bengal, interested in C/C++, Java, and Python."
-    />
-    <meta name="theme-color" content="#0a0b09" data-theme-color />
-    <meta name="color-scheme" content="dark light" />
 
-    <script>
-      (function () {
-        try {
-          var s = localStorage.getItem('theme');
-          var t = s || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-          if (t === 'light') document.documentElement.dataset.theme = 'light';
-          var m = document.querySelector('meta[name="theme-color"]');
-          if (m) m.setAttribute('content', t === 'light' ? '#f4f5ed' : '#0a0b09');
-        } catch (e) {}
-      })();
-    </script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SUBHAM SHIT — BCA Student & Developer</title>
+  <meta name="description"
+    content="SUBHAM SHIT is a BCA student from Medinipur, West Bengal, interested in C/C++, Java, and Python." />
+  <meta name="theme-color" content="#0a0b09" data-theme-color />
+  <meta name="color-scheme" content="dark light" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="grain" aria-hidden="true"></div>
+  <!-- Logo Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot" aria-hidden="true" data-cursor-dot></div>
-    <div class="cursor-ring" aria-hidden="true" data-cursor-ring>
-      <span class="cursor-ring__label" data-cursor-label></span>
-    </div>
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('theme');
+        var t = s || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        if (t === 'light') document.documentElement.dataset.theme = 'light';
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', t === 'light' ? '#f4f5ed' : '#0a0b09');
+      } catch (e) { }
+    })();
+  </script>
 
-    <!-- Navigation Header -->
-    <header class="nav">
-      <a href="#hero" class="nav__brand">
-        <span class="nav__dot"></span>
-        <span>SUB <em>V</em></span>
-      </a>
-      <nav class="nav__links">
-        <a class="nav__link" href="#about">About</a>
-        <a class="nav__link" href="#work">Work</a>
-        <a class="nav__link" href="#experience">Experience</a>
-        <a class="nav__link" href="#experiments">Practice</a>
-        <a class="nav__link" href="#roadmap">Roadmap</a>
-        <a class="nav__link" href="#contact">Contact</a>
-      </nav>
-      <div class="nav__right">
-        <button
-          class="nav__theme"
-          data-theme-toggle
-          type="button"
-          aria-label="Toggle theme"
-          aria-pressed="false"
-          title="Toggle theme"
-        >
-          <svg class="nav__theme-icon nav__theme-icon--sun" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3" />
-            <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.4 1.4M11.55 11.55l1.4 1.4M3.05 12.95l1.4-1.4M11.55 4.45l1.4-1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
-          </svg>
-          <svg class="nav__theme-icon nav__theme-icon--moon" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M14 9.5A6 6 0 1 1 6.5 2a5 5 0 0 0 7.5 7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
-          </svg>
-        </button>
-        <span class="nav__time" data-ist-clock data-suffix=" IST" aria-live="off">— IST</span>
-      </div>
-    </header>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-    <main>
-      <!-- Hero Section -->
-      <section class="hero" id="hero">
-        <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
-        <div class="hero__meta" data-fade-in data-delay=".2s">
-          <div>
-            <b style="font-family: var(--font-mono)">subham@portfolio:~$</b>
-            <span data-scramble>whoami → bca student · medinipur, india · code</span>
-          </div>
-          <div class="hero__meta-right">
-            <b data-ist-clock data-suffix=" IST">— IST</b>
-            <span class="hero__status"><i aria-hidden="true"></i>learning · building · growing</span>
-          </div>
-        </div>
+<body>
+  <div class="grain" aria-hidden="true"></div>
 
-        <h1 class="hero__title" data-headline aria-label="BCA student learning to build with code.">
-          BCA student learning to build with <em>code</em>.
-        </h1>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" aria-hidden="true" data-cursor-dot></div>
+  <div class="cursor-ring" aria-hidden="true" data-cursor-ring>
+    <span class="cursor-ring__label" data-cursor-label></span>
+  </div>
 
-        <p class="hero__lede" data-fade-in data-delay="1.4s">
-          Hi, I'm SUBHAM SHIT. I'm a BCA student from Medinipur, West Bengal, India.
-          I'm passionate about programming and building solid foundations in <em>C/C++, Java, and Python</em>.
-        </p>
-
-        <div class="hero__ctas" data-fade-in data-delay="1.6s">
-          <span class="magnetic" data-magnetic data-strength="0.2" data-range="120">
-            <a class="cta cta--primary" href="#work">
-              My work
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M8 3V13M8 13L3 8M8 13L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </span>
-          <span class="magnetic" data-magnetic data-strength="0.18" data-range="100">
-            <a class="cta cta--ghost" href="#contact">
-              Get in touch
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </span>
-        </div>
-      </section>
-
-      <!-- Marquee Ticker -->
-      <div class="marquee" data-marquee aria-hidden="true">
-        <div class="marquee__track" data-marquee-track>
-          <div class="marquee__group">
-            <span>BCA Student</span>
-            <span><em>C / C++</em></span>
-            <span>Java</span>
-            <span>Python</span>
-            <span>Data Structures</span>
-            <span>Medinipur</span>
-            <span>West Bengal</span>
-            <span><em>Learning by building</em></span>
-            <span>Problem Solving</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 01 About -->
-      <section class="section section--narrow" id="about">
-        <div class="section__top reveal" data-reveal data-ghost="01">
-          <span class="section__num" data-scramble>01 / About</span>
-          <h2 class="section__title">Learning the fundamentals, one <em>program</em> at a time.</h2>
-        </div>
-        <div class="about">
-          <div class="about__copy reveal" data-reveal>
-            <p>
-              I'm a Bachelor of Computer Applications (BCA) student based in <em>Medinipur, West Bengal</em>. 
-              I'm building my computer science foundation and exploring the software engineering principles behind reliable systems.
-            </p>
-            <p>
-              I focus actively on <em>C/C++, Java, and Python</em>. I learn by building small tools, experimenting with creative UI patterns, and converting conceptual ideas into clean, working code.
-            </p>
-          </div>
-          <div class="about__facts reveal" data-reveal style="--d: 0.1s">
-            <div class="about__fact">
-              <span>Currently</span>
-              <div><b>BCA Student</b> <em>· Medinipur, India</em></div>
-            </div>
-            <div class="about__fact">
-              <span>PIN Code</span>
-              <div><b>721101</b></div>
-            </div>
-            <div class="about__fact">
-              <span>Languages</span>
-              <div><b>C/C++ · Java · Python</b></div>
-            </div>
-            <div class="about__fact">
-              <span>Interests</span>
-              <div><b>Data Structures, Algorithms & Web</b></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02 Selected Work (Horizontal Spring Scroll Rail) -->
-      <section class="work-rail" id="work" data-work-rail>
-        <div class="work-rail__sticky">
-          <div class="work-rail__track" data-work-track>
-            <div class="work-rail__intro" data-ghost="02">
-              <span class="section__num" data-scramble>02 / Selected work</span>
-              <h2>A few <em>recent</em> things, built with focus and care.</h2>
-              <p>Personal websites, UI motion experiments, and web apps built from concept to launch.</p>
-              <div class="work-rail__hint">Scroll to advance</div>
-            </div>
-
-            <!-- Card 1: Portfolio -->
-            <article class="work-card">
-              <button class="work-card__hit" data-open-case="portfolio" aria-label="Open Personal Portfolio case study">
-                <div class="work-card__head">
-                  <span>2026</span>
-                  <span class="work-card__num">01</span>
-                </div>
-                <div class="work-card__art" data-mesh-art></div>
-                <div class="work-card__body">
-                  <h3 class="work-card__title">Personal <em>Portfolio</em></h3>
-                  <p class="work-card__blurb">
-                    An editorial aesthetic layout featuring physics-based tilt, canvas flow-field, custom cursor, and smooth transitions built using vanilla technologies.
-                  </p>
-                  <div class="work-card__tags">
-                    <span>HTML5</span><span>Modern CSS</span><span>JavaScript</span>
-                  </div>
-                </div>
-              </button>
-              <div class="work-card__foot">
-                <span class="work-card__action work-card__action--primary">
-                  View case
-                  <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true"><path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <a class="work-card__action" href="https://github.com/max-subh/cv" target="_blank" rel="noreferrer">
-                  GitHub
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 2: Birthday Project -->
-            <article class="work-card">
-              <button class="work-card__hit" data-open-case="birthday" aria-label="Open Birthday Page case study">
-                <div class="work-card__head">
-                  <span>2026</span>
-                  <span class="work-card__num">02</span>
-                </div>
-                <div class="work-card__art" data-grid-art></div>
-                <div class="work-card__body">
-                  <h3 class="work-card__title">Celebration <em>Experience</em></h3>
-                  <p class="work-card__blurb">
-                    An interactive celebration web app with custom live countdown timers, personal message reveals, photo album transitions, and particle confetti.
-                  </p>
-                  <div class="work-card__tags">
-                    <span>React</span><span>TypeScript</span><span>Vercel</span>
-                  </div>
-                </div>
-              </button>
-              <div class="work-card__foot">
-                <span class="work-card__action work-card__action--primary">
-                  View case
-                  <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true"><path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <a class="work-card__action" href="https://happy-birthdaytripti.vercel.app/" target="_blank" rel="noreferrer">
-                  Live
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 3: GitHub Repositories -->
-            <article class="work-card">
-              <button class="work-card__hit" data-open-case="github" aria-label="Open GitHub Projects case study">
-                <div class="work-card__head">
-                  <span>Open Source</span>
-                  <span class="work-card__num">03</span>
-                </div>
-                <div class="work-card__art">
-                  <pre style="margin: 0; font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); line-height: 1.7; letter-spacing: 0.02em; padding: 24px 28px; text-align: left;">
-$ gh repo list max-subh
-✓ algorithms-c-cpp [active]
-✓ java-oop-practice [active]
-✓ python-utility-tools [active]</pre>
-                </div>
-                <div class="work-card__body">
-                  <h3 class="work-card__title">Code <em>Repositories</em></h3>
-                  <p class="work-card__blurb">
-                    Public repositories featuring daily problem solving, algorithms practice, scripts, and front-end interface prototypes.
-                  </p>
-                  <div class="work-card__tags">
-                    <span>Git</span><span>Open Source</span><span>CLI</span>
-                  </div>
-                </div>
-              </button>
-              <div class="work-card__foot">
-                <span class="work-card__action work-card__action--primary">
-                  View case
-                  <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true"><path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <a class="work-card__action" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
-                  GitHub
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <div style="flex: 0 0 var(--gutter)"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 03 Experience Timeline -->
-      <section class="section section--narrow" id="experience">
-        <div class="section__top reveal" data-reveal data-ghost="03">
-          <span class="section__num" data-scramble>03 / Experience</span>
-          <h2 class="section__title">Milestones in my <em>coding</em> journey.</h2>
-        </div>
-        <div class="timeline">
-          <div class="tl-row reveal" data-reveal>
-            <span class="logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <text x="7" y="23" font-family="Georgia, serif" font-size="20" font-weight="700" fill="currentColor">S</text>
-                <circle cx="23" cy="21" r="2.4" fill="var(--accent)" />
-              </svg>
-            </span>
-            <div class="tl-row__main">
-              <span class="tl-row__year">2025 — Present</span>
-              <b>Student Developer & Builder</b>
-              <em>Self-Driven · Front-end & Core Logic</em>
-              <p>
-                Developing interactive web projects, practicing data structures in C/C++, object-oriented design in Java, and automating workflows using Python.
-              </p>
-            </div>
-            <div class="tl-row__loc">Medinipur, IN</div>
-          </div>
-
-          <div class="tl-row reveal" data-reveal>
-            <span class="logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <text x="8" y="23" font-family="Georgia, serif" font-size="20" font-weight="700" fill="currentColor">A</text>
-              </svg>
-            </span>
-            <div class="tl-row__main">
-              <span class="tl-row__year">2024</span>
-              <b>Academic Application Development</b>
-              <em>Curriculum & Applied Practice</em>
-              <p>
-                Built software utility prototypes, relational schema queries, and small management tools strengthening core problem-solving capability.
-              </p>
-            </div>
-            <div class="tl-row__loc">Academic</div>
-          </div>
-
-          <div class="tl-row reveal" data-reveal>
-            <span class="logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <text x="7" y="23" font-family="Georgia, serif" font-size="20" font-weight="700" fill="currentColor">C</text>
-              </svg>
-            </span>
-            <div class="tl-row__main">
-              <span class="tl-row__year">2023 — 2024</span>
-              <b>Programming Foundations</b>
-              <em>Foundational Practice</em>
-              <p>
-                Focused on memory management, pointer manipulation, sorting, and algorithmic structures in C alongside standard OOP in Java.
-              </p>
-            </div>
-            <div class="tl-row__loc">West Bengal, IN</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 04 Practice / Tracks -->
-      <section class="section section--narrow" id="experiments">
-        <div class="section__top reveal" data-reveal data-ghost="04">
-          <span class="section__num" data-scramble>04 / Practice</span>
-          <h2 class="section__title">Hands-on tracks, <em>built</em> for craft.</h2>
-        </div>
-
-        <div class="experiments-grid">
-          <article class="exp-card reveal" data-reveal>
-            <div class="exp-card__head">
-              <span>Track · 01</span>
-              <span class="exp-card__num">01</span>
-            </div>
-            <h3 class="exp-card__title">c-<em>foundations</em></h3>
-            <p class="exp-card__blurb">
-              Pointers, dynamic arrays, structures, and low-level memory allocation practiced through console utilities and algorithmic challenges.
-            </p>
-            <div class="exp-card__tags">
-              <span>C</span><span>C++</span><span>Pointers</span>
-            </div>
-            <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
-              View repo
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </article>
-
-          <article class="exp-card reveal" data-reveal style="--d: .05s">
-            <div class="exp-card__head">
-              <span>Track · 02</span>
-              <span class="exp-card__num">02</span>
-            </div>
-            <h3 class="exp-card__title">java-<em>oop</em></h3>
-            <p class="exp-card__blurb">
-              Inheritance, polymorphism, interfaces, and the Java Collections framework implemented through modular system simulations.
-            </p>
-            <div class="exp-card__tags">
-              <span>Java</span><span>OOP</span><span>Collections</span>
-            </div>
-            <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
-              View repo
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </article>
-
-          <article class="exp-card reveal" data-reveal style="--d: .1s">
-            <div class="exp-card__head">
-              <span>Track · 03</span>
-              <span class="exp-card__num">03</span>
-            </div>
-            <h3 class="exp-card__title">python-<em>scripts</em></h3>
-            <p class="exp-card__blurb">
-              Automation scripts for repetitive chores, file organization, string manipulation, and parsing structured data feeds.
-            </p>
-            <div class="exp-card__tags">
-              <span>Python</span><span>Automation</span><span>CLI</span>
-            </div>
-            <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
-              View repo
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </article>
-
-          <article class="exp-card reveal" data-reveal style="--d: .15s">
-            <div class="exp-card__head">
-              <span>Track · 04</span>
-              <span class="exp-card__num">04</span>
-            </div>
-            <h3 class="exp-card__title">web-<em>sketches</em></h3>
-            <p class="exp-card__blurb">
-              Interactive front-end experiments exploring fluid typography, scroll physics, smooth theme transitions, and CSS animation.
-            </p>
-            <div class="exp-card__tags">
-              <span>JavaScript</span><span>CSS</span><span>UI/UX</span>
-            </div>
-            <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
-              View repo
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <!-- 05 Roadmap Section -->
-      <section class="section section--narrow" id="roadmap">
-        <div class="section__top reveal" data-reveal data-ghost="05">
-          <span class="section__num" data-scramble>05 / Roadmap</span>
-          <h2 class="section__title">Mostly learning. Always <em>building.</em></h2>
-        </div>
-
-        <article class="ai-feature reveal" data-reveal>
-          <div class="ai-feature__head">
-            <span class="ai-feature__tag">Featured · Focus</span>
-            <span class="ai-feature__year">2026</span>
-          </div>
-          <div class="ai-feature__grid">
-            <div class="ai-feature__copy">
-              <h3 class="ai-feature__title">Data Structures &amp; <em>Algorithms</em></h3>
-              <p class="ai-feature__lede">Strong fundamentals first, frameworks after.</p>
-              <p class="ai-feature__body">
-                Mastering essential computer science building blocks — linked lists, binary trees, sorting algorithms, and hash tables in C++ and Java. Applying these principles to write optimized and reliable software.
-              </p>
-              <div class="ai-feature__chips">
-                <span>C++</span><span>Java</span><span>Python</span><span>Data Structures</span><span>Algorithms</span>
-              </div>
-              <div class="ai-feature__ctas">
-                <button class="ai-feature__cta" data-open-case="roadmap">
-                  Read blueprint
-                  <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true"><path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="ai-feature__art" data-graph-art></div>
-          </div>
-        </article>
-
-        <div class="ai-adjacent">
-          <span class="ai-adjacent__label">Ongoing habits</span>
-          <div class="ai-adjacent__grid">
-            <div class="explore__card reveal" data-reveal>
-              <span class="explore__card__kicker">Habit</span>
-              <h3>Code a little, <em>daily</em>.</h3>
-              <p>Short, regular practice sessions build lasting muscle memory better than occasional long sprints.</p>
-            </div>
-            <div class="explore__card reveal" data-reveal>
-              <span class="explore__card__kicker">Tools</span>
-              <h3>Mastering <em>Git</em> workflow.</h3>
-              <p>Writing atomic commits, maintaining structured feature branches, and documenting repositories clearly.</p>
-            </div>
-            <div class="explore__card reveal" data-reveal>
-              <span class="explore__card__kicker">Web</span>
-              <h3>Building for the <em>browser</em>.</h3>
-              <p>Crafting accessible, lightweight, and responsive interfaces without heavy framework bloat.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 06 Contact Section -->
-      <section class="contact" id="contact">
-        <div class="contact__top reveal" data-reveal data-ghost="06">
-          <span data-scramble>06 / Contact</span>
-          <span>Open to connecting</span>
-        </div>
-        <h2 class="contact__title reveal" data-reveal style="--d: 0.1s">
-          Say <em>hello.</em>
-        </h2>
-        <div class="reveal" data-reveal style="--d: 0.2s">
-          <div class="contact__row">
-            <span class="magnetic" data-magnetic data-strength="0.15" data-range="140">
-              <a class="contact__email" href="mailto:subhamshit136@gmail.com">
-                subhamshit136@gmail.com
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </span>
-            <button class="contact__copy" data-copy-email>↗ Copy address</button>
-          </div>
-          <div class="contact__socials">
-            <a href="https://github.com/max-subh" target="_blank" rel="noreferrer">GitHub <span>max-subh</span></a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn <span>Profile</span></a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="foot">
-      <div>© 2026 · SUBHAM SHIT</div>
-      <div>Designed &amp; developed by hand</div>
-    </footer>
-
-    <!-- Case study modal mount container -->
-    <div data-case-mount></div>
-
-    <!-- Right-Edge Scrub Rail -->
-    <aside class="scrub" data-scrub>
-      <button class="scrub__top" data-scrub-top aria-label="Back to top" title="Back to top">
-        <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 10L8 5L13 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Navigation Header -->
+  <header class="nav">
+    <a href="#hero" class="nav__brand">
+      <img src="logo.png" alt="Logo"
+        style="width: 24px; height: 24px; border-radius: 4px; display: inline-block; vertical-align: middle;" />
+      <span>SUBHAM SHIT</span>
+    </a>
+    <nav class="nav__links">
+      <a class="nav__link" href="#about">About</a>
+      <a class="nav__link" href="#work">Work</a>
+      <a class="nav__link" href="#experience">Education</a>
+      <a class="nav__link" href="#experiments">Practice</a>
+      <a class="nav__link" href="#roadmap">Roadmap</a>
+      <a class="nav__link" href="#contact">Contact</a>
+    </nav>
+    <div class="nav__right">
+      <!-- Sound Toggle Button -->
+      <button class="nav__sound" data-sound-toggle type="button" aria-label="Toggle sound effects" title="Toggle sound">
+        <svg class="sound-icon-on" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <svg class="sound-icon-off" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
         </svg>
       </button>
-      <div class="scrub__track" data-scrub-track role="slider" aria-label="Scroll position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="scrub__fill" data-scrub-fill></div>
-        <div class="scrub__pip" data-scrub-pip aria-hidden="true"></div>
-        <span class="scrub__readout" data-scrub-readout aria-hidden="true">0%</span>
-      </div>
-    </aside>
 
-    <script src="script.js" defer></script>
-  </body>
+      <!-- data-theme-toggle Button -->
+      <button class="nav__theme" data-theme-toggle type="button" aria-label="Toggle theme" aria-pressed="false"
+        title="Toggle theme">
+        <svg class="nav__theme-icon nav__theme-icon--sun" width="14" height="14" viewBox="0 0 16 16" fill="none"
+          aria-hidden="true">
+          <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3" />
+          <path
+            d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.4 1.4M11.55 11.55l1.4 1.4M3.05 12.95l1.4-1.4M11.55 4.45l1.4-1.4"
+            stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+        </svg>
+        <svg class="nav__theme-icon nav__theme-icon--moon" width="14" height="14" viewBox="0 0 16 16" fill="none"
+          aria-hidden="true">
+          <path d="M14 9.5A6 6 0 1 1 6.5 2a5 5 0 0 0 7.5 7.5Z" stroke="currentColor" stroke-width="1.3"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+      <span class="nav__time" data-ist-clock data-suffix=" IST" aria-live="off">— IST</span>
+    </div>
+  </header>
+
+  <main>
+   <!-- Hero Section -->
+    <section class="hero" id="hero" data-hero-interactive>
+      <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
+
+      <div class="hero__meta" data-fade-in data-delay=".2s">
+        <div>
+          <b style="font-family: var(--font-mono)">subhamshit136@gmail.com</b>
+          <span data-scramble>whoami → bca student · medinipur, india · code</span>
+        </div>
+        <div class="hero__meta-right">
+          <b data-ist-clock data-suffix=" IST">— IST</b>
+          <span class="hero__status"><i aria-hidden="true"></i>learning · building · growing</span>
+        </div>
+      </div>
+
+      <!-- 2-Column Container: Left Text & Right Photo -->
+      <div class="hero__layout">
+        <!-- Left Side: Content -->
+        <div class="hero__content">
+          <h1 class="hero__title">
+            <span class="interactive-word">Hi,</span>
+            <span class="interactive-word">I'm</span>
+            <span class="interactive-word interactive-word--highlight">Subham.</span>
+          </h1>
+
+          <div class="hero__typewriter" data-fade-in data-delay="0.3s">
+            <span class="hero__typewriter-prefix">I AM A </span>
+            <span class="typing-target" data-typed-hero></span><span class="typing-cursor">|</span>
+          </div>
+
+          <p class="hero__lede" data-fade-in data-delay="0.5s">
+            Exploring the intersection of backend logic, full-stack development, and AI tools to turn
+            complex ideas into practical, real-world digital solutions.
+            <em class="interactive-word">C/C++</em>,
+            <em class="interactive-word">Java</em>,
+            <em class="interactive-word">Python</em>,
+            and <em class="interactive-word interactive-word--highlight">AI</em>.
+          </p>
+
+          <div class="hero__ctas" data-fade-in data-delay="0.7s">
+            <span class="magnetic" data-magnetic data-strength="0.2" data-range="120">
+              <a class="cta cta--primary" href="#work">
+                My work
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 3V13M8 13L3 8M8 13L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </span>
+            <span class="magnetic" data-magnetic data-strength="0.18" data-range="100">
+              <a class="cta cta--ghost" href="#contact">
+                Get in touch
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Side: Profile Image (Red Marked Area) -->
+        <div class="hero__media" data-fade-in data-delay="0.4s">
+          <div class="hero__photo-wrapper">
+            <!-- Apni image ka file path yaha lagayein -->
+            <img src="profile.jpg" alt="Subham Shit" class="hero__photo" />
+            <div class="hero__photo-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee" data-marquee aria-hidden="true">
+      <div class="marquee__track" data-marquee-track>
+        <div class="marquee__group">
+          <span>BCA Student</span>
+          <span><em>C / C++</em></span>
+          <span>Java</span>
+          <span>Python</span>
+          <span>Data Structures</span>
+          <span>Medinipur</span>
+          <span>West Bengal</span>
+          <span><em>Learning by building</em></span>
+          <span>Problem Solving</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 01 About -->
+    <section class="section section--narrow" id="about">
+      <div class="section__top reveal" data-reveal data-ghost="01">
+        <span class="section__num" data-scramble>01 / About</span>
+        <h2 class="section__title">Learning the fundamentals, one <em>program</em> at a time.</h2>
+      </div>
+      <div class="about">
+        <div class="about__copy reveal" data-reveal>
+          <p>
+            I'm a Bachelor of Computer Applications (BCA) student based in <em>Medinipur, West Bengal</em>[cite: 17].
+            I'm building my computer science foundation and exploring the software engineering principles behind
+            reliable systems.
+          </p>
+          <p>
+            I focus actively on <em>C/C++, Java, and Python</em>. I learn by building small tools, experimenting with
+            creative UI patterns, and converting conceptual ideas into clean, working code.
+          </p>
+        </div>
+        <div class="about__facts reveal" data-reveal style="--d: 0.1s">
+          <div class="about__fact">
+            <span>Based in</span>
+            <div><b>Medinipur, IN</b> <em>· West Bengal</em></div>
+          </div>
+          <div class="about__fact">
+            <span>Currently</span>
+            <div><b>UG</b> <em>· Midnapore City College</em>[cite: 17]</div>
+          </div>
+          <div class="about__fact">
+            <span>Languages</span>
+            <div><b>C/C++ · Java · Python</b></div>
+          </div>
+          <div class="about__fact">
+            <span>Interests</span>
+            <div><b>Web Development & AI Integration</b></div>
+          </div>
+          <div class="about__fact">
+            <span>Education</span>
+            <div><b>Bachelor of Computer Applications (BCA)</b> <em>2024</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Selected Work (Horizontal Spring Scroll Rail) -->
+    <section class="work-rail" id="work" data-work-rail>
+      <div class="work-rail__sticky">
+        <div class="work-rail__track" data-work-track>
+          <div class="work-rail__intro" data-ghost="02">
+            <span class="section__num" data-scramble>02 / Selected work</span>
+            <h2>A few <em>recent</em> things, built with focus and care.</h2>
+            <p>Personal websites, UI motion experiments, and web apps built from concept to launch.</p>
+            <div class="work-rail__hint">Scroll to advance</div>
+          </div>
+
+          <!-- Card 1: Live Portfolio -->
+          <article class="work-card">
+            <button class="work-card__hit" data-open-case="portfolio" aria-label="Open Personal Portfolio case study">
+              <div class="work-card__head">
+                <span>2026</span>
+                <span class="work-card__num">01</span>
+              </div>
+              <div class="work-card__art" data-mesh-art></div>
+              <div class="work-card__body">
+                <h3 class="work-card__title">Subham <em>Portfolio</em></h3>
+                <p class="work-card__blurb">
+                  A personal creative portfolio deployed on Vercel featuring physics-based tilt, canvas flow-field,
+                  custom cursor, and smooth transitions built using vanilla technologies[cite: 17].
+                </p>
+                <div class="work-card__tags">
+                  <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Vercel</span>[cite: 17]
+                </div>
+              </div>
+            </button>
+            <div class="work-card__foot">
+              <span class="work-card__action work-card__action--primary">
+                View case
+                <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true">
+                  <path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+              <a class="work-card__action" href="https://subh-4uq2.vercel.app/" target="_blank" rel="noreferrer">
+                Visit Live[cite: 17]
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2: Birthday Project -->
+          <article class="work-card">
+            <button class="work-card__hit" data-open-case="birthday" aria-label="Open Birthday Page case study">
+              <div class="work-card__head">
+                <span>2026</span>
+                <span class="work-card__num">02</span>
+              </div>
+              <div class="work-card__art" data-grid-art></div>
+              <div class="work-card__body">
+                <h3 class="work-card__title">Celebration <em>Experience</em></h3>
+                <p class="work-card__blurb">
+                  An interactive celebration web app with custom live countdown timers, personal message reveals, photo
+                  album transitions, and particle confetti.
+                </p>
+                <div class="work-card__tags">
+                  <span>React</span><span>TypeScript</span><span>Vercel</span>
+                </div>
+              </div>
+            </button>
+            <div class="work-card__foot">
+              <span class="work-card__action work-card__action--primary">
+                View case
+                <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true">
+                  <path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+              <a class="work-card__action" href="https://happy-birthdaytripti.vercel.app/" target="_blank"
+                rel="noreferrer">
+                Live
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M1 11L11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3: GitHub Repositories (Realtime GitHub Telemetry) -->
+          <article class="work-card">
+            <button class="work-card__hit" data-open-case="github" aria-label="Open GitHub Projects case study">
+              <div class="work-card__head">
+                <span>Open Source</span>
+                <span class="work-card__num">03</span>
+              </div>
+              <div class="work-card__art" style="min-height: 160px; padding: 20px;">
+                <div class="github-stats-widget" data-github-widget
+                  style="width: 100%; text-align: left; font-family: var(--font-mono); font-size: 11px;">
+                  <div
+                    style="display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--accent);">
+                    <span>● LIVE TELEMETRY</span>
+                    <span id="gh-status">FETCHING...</span>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                    <div
+                      style="background: var(--bg); padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px;">
+                      <div style="color: var(--ink-mute); font-size: 9px;">PUBLIC REPOS</div>
+                      <b id="gh-repos" style="font-size: 16px; color: var(--ink);">--</b>
+                    </div>
+                    <div
+                      style="background: var(--bg); padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px;">
+                      <div style="color: var(--ink-mute); font-size: 9px;">FOLLOWERS</div>
+                      <b id="gh-followers" style="font-size: 16px; color: var(--ink);">--</b>
+                    </div>
+                  </div>
+                  <div style="color: var(--ink-faint); font-size: 10px;" id="gh-latest">
+                    Latest repo: fetching...
+                  </div>
+                </div>
+              </div>
+              <div class="work-card__body">
+                <h3 class="work-card__title">Code <em>Repositories</em></h3>
+                <p class="work-card__blurb">
+                  Public repositories featuring daily problem solving, algorithms practice, scripts, and front-end
+                  interface prototypes.
+                </p>
+                <div class="work-card__tags">
+                  <span>Git</span><span>Open Source</span><span>CLI</span>
+                </div>
+              </div>
+            </button>
+            <div class="work-card__foot">
+              <span class="work-card__action work-card__action--primary">
+                View case
+                <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true">
+                  <path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+              <a class="work-card__action" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
+                GitHub
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M1 11L11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <div style="flex: 0 0 var(--gutter)"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Education & Academic Pathway -->
+    <section class="section section--narrow" id="experience">
+      <div class="section__top reveal" data-reveal data-ghost="03">
+        <span class="section__num" data-scramble>03 / Education</span>
+        <h2 class="section__title">Academic roots, <em>applied</em> practice.</h2>
+      </div>
+
+      <!-- Tab Switcher Navigation -->
+      <div class="edu-tabs-nav reveal" data-reveal>
+        <button type="button" class="edu-tab-btn active" data-tab-target="#tab-education">
+          <span>01</span> Education
+        </button>
+        <button type="button" class="edu-tab-btn" data-tab-target="#tab-skills">
+          <span>02</span> Technical Skills
+        </button>
+        <button type="button" class="edu-tab-btn" data-tab-target="#tab-milestones">
+          <span>03</span> Milestones
+        </button>
+      </div>
+
+      <!-- Tab 1: Education -->
+      <div id="tab-education" class="edu-tab-pane active reveal" data-reveal>
+        <div class="edu-card">
+          <div class="edu-card__head">
+            <span class="edu-card__badge">internship</span>
+            <span class="edu-card__year">2026</span>
+          </div>
+          <h3 class="edu-card__title">AI Strategy & Business Intelligence</h3>
+          <div class="edu-card__inst">IBM SkillsBuild <em></em></div>
+          <p class="edu-card__desc">
+            Completed a comprehensive internship program focused on AI strategy, business intelligence, and practical
+            applications of AI in real-world scenarios.
+          </p>
+          <div class="edu-card__meta">
+            <span>JAC Board</span>
+            <span>Jharkhand</span>
+          </div>
+        </div>
+
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">UG Degree</span>
+              <span class="edu-card__year">2024 — Present</span>
+            </div>
+            <h3 class="edu-card__title">Bachelor of Computer Applications (BCA)</h3>
+            <div class="edu-card__inst">Midnapore City College <em>· Vidyasagar University</em></div>
+            <p class="edu-card__desc">
+              Focusing on core Computer Science foundations: Data Structures, Object-Oriented Programming (Java/C++),
+              Relational Databases, and Software Engineering.
+            </p>
+            <div class="edu-card__meta">
+              <span>BCA Curriculum</span>
+              <span>Medinipur, WB</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Higher Secondary</span>
+              <span class="edu-card__year">2022 — 2024</span>
+            </div>
+            <h3 class="edu-card__title">Higher Secondary Education (10+2)</h3>
+            <div class="edu-card__inst">st. paul's College <em>· Ranchi, Jharkhand</em></div>
+            <p class="edu-card__desc">
+              Completed senior secondary education focusing on Science & Mathematics, establishing the logic and
+              problem-solving basis for programming.
+            </p>
+            <div class="edu-card__meta">
+              <span>JAC Board</span>
+              <span>Jharkhand</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Secondary School</span>
+              <span class="edu-card__year">2022</span>
+            </div>
+            <h3 class="edu-card__title">Secondary School Examination (10th)</h3>
+            <div class="edu-card__inst">saraswati Vidya Mandir <em>· Ghatsila, Jharkhand</em></div>
+            <p class="edu-card__desc">
+              Foundational secondary education with early exposure to computing and mathematics.
+            </p>
+            <div class="edu-card__meta">
+              <span>JAC Board</span>
+              <span>Jharkhand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Skills -->
+      <div id="tab-skills" class="edu-tab-pane">
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Core Logic</span>
+              <span class="edu-card__year">Languages</span>
+            </div>
+            <h3 class="edu-card__title">System & Object Oriented</h3>
+            <div class="edu-card__inst">C / C++ · Java · Python</div>
+            <p class="edu-card__desc">
+              Pointer arithmetic, memory management, OOP paradigms, collections framework, and algorithmic automation
+              scripts.
+            </p>
+            <div class="edu-card__meta">
+              <span>DSA</span><span>OOP</span><span>CLI Tools</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Client-Side</span>
+              <span class="edu-card__year">Front-End</span>
+            </div>
+            <h3 class="edu-card__title">Modern Interactive Web</h3>
+            <div class="edu-card__inst">HTML5 · Modern CSS · Vanilla JS · React</div>
+            <p class="edu-card__desc">
+              Canvas API math, Euler spring physics, custom typography, responsive design, and component architecture.
+            </p>
+            <div class="edu-card__meta">
+              <span>Canvas 2D</span><span>Web Audio</span><span>Vite</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">DevOps & Backend</span>
+              <span class="edu-card__year">Tools</span>
+            </div>
+            <h3 class="edu-card__title">Toolchain & Versioning</h3>
+            <div class="edu-card__inst">Git · GitHub · Vercel · REST APIs</div>
+            <p class="edu-card__desc">
+              Atomic Git commit workflows, GitHub CLI telemetry integration, continuous edge deployments, and responsive
+              UI debugging.
+            </p>
+            <div class="edu-card__meta">
+              <span>Git CLI</span><span>Edge CDN</span><span>Telemetry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Milestones -->
+      <div id="tab-milestones" class="edu-tab-pane">
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Web Project</span>
+              <span class="edu-card__year">2026</span>
+            </div>
+            <h3 class="edu-card__title">High-Performance Portfolio</h3>
+            <div class="edu-card__inst">Vanilla Stack · Vercel Deploy[cite: 17]</div>
+            <p class="edu-card__desc">
+              Engineered spring-driven cursor, custom sound synthesis via Web Audio API, and real-time GitHub telemetry.
+            </p>
+            <div class="edu-card__meta">
+              <span>Physics</span><span>Audio Engine</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Open Source</span>
+              <span class="edu-card__year">Active</span>
+            </div>
+            <h3 class="edu-card__title">Public Algorithm Repositories</h3>
+            <div class="edu-card__inst">GitHub / max-subh[cite: 17]</div>
+            <p class="edu-card__desc">
+              Publicly documenting daily data structures solutions, modular Java design patterns, and Python automation
+              tools.
+            </p>
+            <div class="edu-card__meta">
+              <span>Clean Code</span><span>Versioned</span>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-card__head">
+              <span class="edu-card__badge">Interactive Web</span>
+              <span class="edu-card__year">2026</span>
+            </div>
+            <h3 class="edu-card__title">Celebration Experience App</h3>
+            <div class="edu-card__inst">React & TypeScript[cite: 17]</div>
+            <p class="edu-card__desc">
+              Delivered custom live countdown timers, personal photo transitions, and particle physics deployed on
+              Vercel[cite: 17].
+            </p>
+            <div class="edu-card__meta">
+              <span>React</span><span>TypeScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Practice / Tracks -->
+    <section class="section section--narrow" id="experiments">
+      <div class="section__top reveal" data-reveal data-ghost="04">
+        <span class="section__num" data-scramble>04 / Practice</span>
+        <h2 class="section__title">Hands-on tracks, <em>built</em> for craft.</h2>
+      </div>
+
+      <div class="experiments-grid">
+        <article class="exp-card reveal" data-reveal>
+          <div class="exp-card__head">
+            <span>Track · 01</span>
+            <span class="exp-card__num">01</span>
+          </div>
+          <h3 class="exp-card__title">c-<em>foundations</em></h3>
+          <p class="exp-card__blurb">
+            Pointers, dynamic arrays, structures, and low-level memory allocation practiced through console utilities
+            and algorithmic challenges.
+          </p>
+          <div class="exp-card__tags">
+            <span>C</span><span>C++</span><span>Pointers</span>
+          </div>
+          <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
+            View repo
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </article>
+
+        <article class="exp-card reveal" data-reveal style="--d: .05s">
+          <div class="exp-card__head">
+            <span>Track · 02</span>
+            <span class="exp-card__num">02</span>
+          </div>
+          <h3 class="exp-card__title">java-<em>oop</em></h3>
+          <p class="exp-card__blurb">
+            Inheritance, polymorphism, interfaces, and the Java Collections framework implemented through modular system
+            simulations.
+          </p>
+          <div class="exp-card__tags">
+            <span>Java</span><span>OOP</span><span>Collections</span>
+          </div>
+          <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
+            View repo
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M1 11L11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </article>
+
+        <article class="exp-card reveal" data-reveal style="--d: .1s">
+          <div class="exp-card__head">
+            <span>Track · 03</span>
+            <span class="exp-card__num">03</span>
+          </div>
+          <h3 class="exp-card__title">python-<em>scripts</em></h3>
+          <p class="exp-card__blurb">
+            Automation scripts for repetitive chores, file organization, string manipulation, and parsing structured
+            data feeds.
+          </p>
+          <div class="exp-card__tags">
+            <span>Python</span><span>Automation</span><span>CLI</span>
+          </div>
+          <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
+            View repo
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M1 11L11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </article>
+
+        <article class="exp-card reveal" data-reveal style="--d: .15s">
+          <div class="exp-card__head">
+            <span>Track · 04</span>
+            <span class="exp-card__num">04</span>
+          </div>
+          <h3 class="exp-card__title">web-<em>sketches</em></h3>
+          <p class="exp-card__blurb">
+            Interactive front-end experiments exploring fluid typography, scroll physics, smooth theme transitions, and
+            CSS animation.
+          </p>
+          <div class="exp-card__tags">
+            <span>JavaScript</span><span>CSS</span><span>UI/UX</span>
+          </div>
+          <a class="exp-card__link" href="https://github.com/max-subh" target="_blank" rel="noreferrer">
+            View repo
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M1 11L11 1H4M11 1V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 05 Roadmap Section -->
+    <section class="section section--narrow" id="roadmap">
+      <div class="section__top reveal" data-reveal data-ghost="05">
+        <span class="section__num" data-scramble>05 / Roadmap</span>
+        <h2 class="section__title">Mostly learning. Always <em>building.</em></h2>
+      </div>
+
+      <article class="ai-feature reveal" data-reveal>
+        <div class="ai-feature__head">
+          <span class="ai-feature__tag">Featured · Focus</span>
+          <span class="ai-feature__year">2026</span>
+        </div>
+        <div class="ai-feature__grid">
+          <div class="ai-feature__copy">
+            <h3 class="ai-feature__title">Data Structures &amp; <em>Algorithms</em></h3>
+            <p class="ai-feature__lede">Strong fundamentals first, frameworks after.</p>
+            <p class="ai-feature__body">
+              Mastering essential computer science building blocks — linked lists, binary trees, sorting algorithms, and
+              hash tables in C++ and Java. Applying these principles to write optimized and reliable software.
+            </p>
+            <div class="ai-feature__chips">
+              <span>C++</span><span>Java</span><span>Python</span><span>Data Structures</span><span>Algorithms</span>
+            </div>
+            <div class="ai-feature__ctas">
+              <button class="ai-feature__cta" data-open-case="roadmap">
+                Read blueprint
+                <svg width="11" height="11" viewBox="0 0 14 12" fill="none" aria-hidden="true">
+                  <path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="ai-feature__art" data-graph-art></div>
+        </div>
+      </article>
+
+      <div class="ai-adjacent">
+        <span class="ai-adjacent__label">Ongoing habits</span>
+        <div class="ai-adjacent__grid">
+          <div class="explore__card reveal" data-reveal>
+            <span class="explore__card__kicker">Habit</span>
+            <h3>Code a little, <em>daily</em>.</h3>
+            <p>Short, regular practice sessions build lasting muscle memory better than occasional long sprints.</p>
+          </div>
+          <div class="explore__card reveal" data-reveal>
+            <span class="explore__card__kicker">Tools</span>
+            <h3>Mastering <em>Git</em> workflow.</h3>
+            <p>Writing atomic commits, maintaining structured feature branches, and documenting repositories clearly.
+            </p>
+          </div>
+          <div class="explore__card reveal" data-reveal>
+            <span class="explore__card__kicker">Web</span>
+            <h3>Building for the <em>browser</em>.</h3>
+            <p>Crafting accessible, lightweight, and responsive interfaces without heavy framework bloat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Contact Section -->
+    <section class="contact" id="contact">
+      <div class="contact__top reveal" data-reveal data-ghost="06">
+        <span data-scramble>06 / Contact</span>
+        <span>Open to connecting</span>
+      </div>
+      <h2 class="contact__title reveal" data-reveal style="--d: 0.1s">
+        Say <em>hello.</em>
+      </h2>
+      <div class="reveal" data-reveal style="--d: 0.2s">
+        <div class="contact__row">
+          <span class="magnetic" data-magnetic data-strength="0.15" data-range="140">
+            <a class="contact__email" href="mailto:subhamshit136@gmail.com">
+              subhamshit136@gmail.com
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </span>
+          <button class="contact__copy" data-copy-email>↗ Copy address</button>
+        </div>
+        <div class="contact__socials">
+          <a href="https://github.com/max-subh" target="_blank" rel="noreferrer">GitHub <span>max-subh
+              ↗</span></a>[cite: 17]
+          <a href="https://www.linkedin.com/in/subham-shit-0a51963b3?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+            target="_blank" rel="noreferrer">LinkedIn <span>subham-shit ↗</span></a>[cite: 17]
+          <a href="https://www.instagram.com/son_of_sanjit_?rpxt=MTgxOXU3dHc0bzAyNg==" target="_blank"
+            rel="noreferrer">Instagram <span>son_of_sanjit_ ↗</span></a>[cite: 17]
+          <a href="https://x.com/son_of_sanjit" target="_blank" rel="noreferrer">X (Twitter) <span>@son_of_sanjit
+              ↗</span></a>[cite: 17]
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div>© 2026 · SUBHAM SHIT</div>
+    <div>Designed &amp; developed by hand</div>
+  </footer>
+
+  <!-- Case study modal mount container -->
+  <div data-case-mount></div>
+
+  <!-- Right-Edge Scrub Rail -->
+  <aside class="scrub" data-scrub>
+    <button class="scrub__top" data-scrub-top aria-label="Back to top" title="Back to top">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 10L8 5L13 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
+    <div class="scrub__track" data-scrub-track role="slider" aria-label="Scroll position" aria-valuemin="0"
+      aria-valuemax="100" aria-valuenow="0">
+      <div class="scrub__fill" data-scrub-fill></div>
+      <div class="scrub__pip" data-scrub-pip aria-hidden="true"></div>
+      <span class="scrub__readout" data-scrub-readout aria-hidden="true">0%</span>
+    </div>
+  </aside>
+
+  <script src="script.js" defer></script>
+
+  <!-- Hidden Admin Panel (Only visible with ?admin=subham24) -->
+  <div id="admin-trigger" style="display: none; position: fixed; bottom: 20px; left: 20px; z-index: 10000;">
+    <button id="admin-open-btn"
+      style="background: var(--accent); color: var(--ink-on-accent); padding: 12px 20px; border-radius: 999px; font-family: var(--font-mono); font-size: 11px; font-weight: bold; border: none; cursor: pointer; box-shadow: 0 0 20px var(--accent);">
+      + Add New Project
+    </button>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="admin-modal"
+    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10001; place-items: center; padding: 20px; backdrop-filter: blur(8px);">
+    <div
+      style="background: var(--bg-elev); border: 1px solid var(--line-strong); padding: 28px; border-radius: 16px; width: min(100%, 500px); color: var(--ink); font-family: var(--font-sans);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="margin: 0; font-size: 18px; font-weight: 500;">Add New Project</h3>
+        <button id="admin-close-btn"
+          style="background: none; border: none; color: var(--ink-mute); font-size: 18px; cursor: pointer;">✕</button>
+      </div>
+      <form id="admin-project-form" style="display: grid; gap: 14px;">
+        <div>
+          <label style="font-size: 11px; font-family: var(--font-mono); color: var(--ink-mute);">PROJECT TITLE</label>
+          <input type="text" id="proj-title" required placeholder="e.g. Algo Visualizer"
+            style="width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); margin-top: 4px;" />
+        </div>
+        <div>
+          <label style="font-size: 11px; font-family: var(--font-mono); color: var(--ink-mute);">DESCRIPTION</label>
+          <textarea id="proj-desc" required rows="3" placeholder="Short description of your project..."
+            style="width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); margin-top: 4px;"></textarea>
+        </div>
+        <div>
+          <label style="font-size: 11px; font-family: var(--font-mono); color: var(--ink-mute);">TAGS (Comma
+            separated)</label>
+          <input type="text" id="proj-tags" placeholder="e.g. React, Node.js, Web"
+            style="width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); margin-top: 4px;" />
+        </div>
+        <div>
+          <label style="font-size: 11px; font-family: var(--font-mono); color: var(--ink-mute);">LIVE URL
+            (Optional)</label>
+          <input type="url" id="proj-live" placeholder="https://..."
+            style="width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); margin-top: 4px;" />
+        </div>
+        <div>
+          <label style="font-size: 11px; font-family: var(--font-mono); color: var(--ink-mute);">GITHUB URL
+            (Optional)</label>
+          <input type="url" id="proj-github" placeholder="https://github.com/..."
+            style="width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); margin-top: 4px;" />
+        </div>
+        <button type="submit"
+          style="background: var(--accent); color: var(--ink-on-accent); border: none; padding: 12px; border-radius: 8px; font-family: var(--font-mono); font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 10px;">
+          Add to Website
+        </button>
+      </form>
+    </div>
+  </div>
+
+</body>
+
 </html>

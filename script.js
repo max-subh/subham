@@ -43,7 +43,7 @@ const spring = (initial = 0, opts = {}) => {
     if (meta) meta.setAttribute('content', COLOR[t]);
     if (btn) btn.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');
     if (persist) {
-      try { localStorage.setItem(KEY, t); } catch (_) {}
+      try { localStorage.setItem(KEY, t); } catch (_) { }
     }
   };
 
@@ -73,7 +73,7 @@ const spring = (initial = 0, opts = {}) => {
 
   const onMqChange = (e) => {
     let stored = null;
-    try { stored = localStorage.getItem(KEY); } catch (_) {}
+    try { stored = localStorage.getItem(KEY); } catch (_) { }
     if (!stored) apply(e.matches ? 'light' : 'dark', false);
   };
   if (mq.addEventListener) mq.addEventListener('change', onMqChange);
@@ -105,56 +105,51 @@ const spring = (initial = 0, opts = {}) => {
   setInterval(tick, 30000);
 })();
 
-// ── Hero Headline Letter Cascade ──────────────────────────────────────────
+// ── Hero Subtitle Typewriter Engine (Auto-Typing Loop) ─────────────────────
 (() => {
-  const root = document.querySelector('[data-headline]');
-  if (!root) return;
-  if (reducedMotion()) { root.classList.add('ready'); return; }
-  const base = 0.5;
-  let charIdx = 0;
-  const wrap = (text, em) => {
-    const frag = document.createDocumentFragment();
-    const tokens = text.split(/(\s+)/);
-    tokens.forEach((tok) => {
-      if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(' ')); return; }
-      if (!tok) return;
-      const word = document.createElement('span');
-      word.className = 'word';
-      [...tok].forEach((ch) => {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = ch;
-        span.style.transition = `transform .9s cubic-bezier(.7,0,.2,1) ${base + charIdx * 0.018}s`;
-        charIdx++;
-        word.appendChild(span);
-      });
-      if (em) {
-        const e = document.createElement('em');
-        e.appendChild(word);
-        frag.appendChild(e);
-      } else {
-        frag.appendChild(word);
-      }
-    });
-    return frag;
-  };
-  const out = document.createDocumentFragment();
-  root.childNodes.forEach((node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      out.appendChild(wrap(node.textContent, false));
-    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'EM') {
-      out.appendChild(wrap(node.textContent, true));
-    }
-  });
-  root.innerHTML = '';
-  root.appendChild(out);
-  root.classList.add('ready');
+  const target = document.querySelector('[data-typed-hero]');
+  if (!target) return;
 
-  setTimeout(() => {
-    root.querySelectorAll('.char').forEach((c) => {
-      c.style.transform = 'translateY(0)';
-    });
-  }, 120);
+  const roles = [
+    'UG STUDENT', 
+    'FULL-STACK DEVELOPER',
+    'GRAPHICS DESIGNER',
+    'CREATIVE BUILDER'
+  ];
+
+  let roleIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+  const TYPE_SPEED = 90;
+  const DELETE_SPEED = 45;
+  const PAUSE_TIME = 1600;
+
+  const tick = () => {
+    const currentText = roles[roleIdx];
+
+    if (isDeleting) {
+      charIdx--;
+      target.textContent = currentText.substring(0, charIdx);
+    } else {
+      charIdx++;
+      target.textContent = currentText.substring(0, charIdx);
+    }
+
+    let delay = isDeleting ? DELETE_SPEED : TYPE_SPEED;
+
+    if (!isDeleting && charIdx === currentText.length) {
+      delay = PAUSE_TIME;
+      isDeleting = true;
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      roleIdx = (roleIdx + 1) % roles.length;
+      delay = 350;
+    }
+
+    setTimeout(tick, delay);
+  };
+
+  tick();
 })();
 
 // ── Hero Meta & CTA Fade In ───────────────────────────────────────────────
@@ -295,7 +290,7 @@ const spring = (initial = 0, opts = {}) => {
   apply();
 })();
 
-// ── Flow Field Generative Hero Canvas ─────────────────────────────────────
+// ── Flow Field Generative Hero Canvas (Video Style Active Reaction) ────────
 (() => {
   const canvas = document.querySelector('[data-hero-canvas]');
   const hero = document.querySelector('.hero');
@@ -303,27 +298,9 @@ const spring = (initial = 0, opts = {}) => {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const hexToRgb = (hex) => {
-    const h = hex.trim().replace('#', '');
-    const v = h.length === 3 ? [...h].map((c) => c + c).join('') : h;
-    const n = parseInt(v, 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  };
-
-  let accent = [212, 249, 60];
-  let ink = [237, 240, 227];
-  const readTokens = () => {
-    const cs = getComputedStyle(document.documentElement);
-    try {
-      accent = hexToRgb(cs.getPropertyValue('--accent'));
-      ink = hexToRgb(cs.getPropertyValue('--ink'));
-    } catch (_) {}
-  };
-  readTokens();
-
   let w = 0, h = 0;
   const resize = () => {
-    const r = canvas.getBoundingClientRect();
+    const r = hero.getBoundingClientRect();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = r.width;
     h = r.height;
@@ -333,18 +310,19 @@ const spring = (initial = 0, opts = {}) => {
   };
   resize();
 
-  const COUNT = Math.max(48, Math.min(160, Math.round((w * h) / 11000)));
+  const COUNT = 160;
   const parts = [];
   const spawn = (p) => {
     p.x = Math.random() * w;
     p.y = Math.random() * h;
     p.px = p.x;
     p.py = p.y;
-    p.sp = 18 + Math.random() * 36;
-    p.gold = Math.random() < 0.6;
-    p.a = 0.2 + Math.random() * 0.35;
-    p.life = 4 + Math.random() * 8;
+    p.sp = 18 + Math.random() * 26;
+    p.isYellow = Math.random() < 0.45;
+    p.a = 0.2 + Math.random() * 0.5;
+    p.life = 3 + Math.random() * 6;
   };
+
   for (let i = 0; i < COUNT; i++) {
     const p = {};
     spawn(p);
@@ -352,42 +330,59 @@ const spring = (initial = 0, opts = {}) => {
     parts.push(p);
   }
 
-  const field = (x, y, t) =>
-    Math.sin(x * 0.0016 + t * 0.22) * 1.7 +
-    Math.cos(y * 0.0021 - t * 0.16) * 1.3 +
-    Math.sin((x + y) * 0.0009 + t * 0.05) * 0.9;
-
   let mx = -9999, my = -9999;
+  let targetMx = -9999, targetMy = -9999;
+
   window.addEventListener('mousemove', (e) => {
-    const r = canvas.getBoundingClientRect();
-    mx = e.clientX - r.left;
-    my = e.clientY - r.top;
-  });
-  document.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+    const r = hero.getBoundingClientRect();
+    if (e.clientY >= r.top && e.clientY <= r.bottom) {
+      targetMx = e.clientX - r.left;
+      targetMy = e.clientY - r.top;
+    } else {
+      targetMx = -9999;
+      targetMy = -9999;
+    }
+  }, { passive: true });
+
+  const field = (x, y, t) =>
+    Math.sin(x * 0.0016 + t * 0.2) * 1.6 +
+    Math.cos(y * 0.002 - t * 0.16) * 1.3;
 
   const step = (dt, t) => {
+    mx += (targetMx - mx) * 0.18;
+    my += (targetMy - my) * 0.18;
+
     parts.forEach((p) => {
       const a = field(p.x, p.y, t);
       let vx = Math.cos(a) * p.sp;
       let vy = Math.sin(a) * p.sp;
+
       const dx = p.x - mx;
       const dy = p.y - my;
-      const d = Math.hypot(dx, dy);
-      if (d < 140 && d > 0.001) {
-        const f = (1 - d / 140) * 90;
-        vx += (dx / d) * f;
-        vy += (dy / d) * f;
+      const dist = Math.hypot(dx, dy);
+      const RADIUS = 190;
+
+      if (dist < RADIUS && dist > 0.1) {
+        const force = (1 - dist / RADIUS) * 220;
+        vx += (dx / dist) * force - (dy / dist) * (force * 0.8);
+        vy += (dy / dist) * force + (dx / dist) * (force * 0.8);
       }
-      p.px = p.x; p.py = p.y;
-      p.x += vx * dt; p.y += vy * dt;
+
+      p.px = p.x;
+      p.py = p.y;
+      p.x += vx * dt;
+      p.y += vy * dt;
       p.life -= dt;
-      if (p.life <= 0 || p.x < -8 || p.x > w + 8 || p.y < -8 || p.y > h + 8) {
+
+      if (p.life <= 0 || p.x < -20 || p.x > w + 20 || p.y < -20 || p.y > h + 20) {
         spawn(p);
         return;
       }
-      const c = p.gold ? accent : ink;
-      ctx.strokeStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${p.a})`;
-      ctx.lineWidth = 1;
+
+      ctx.strokeStyle = p.isYellow
+        ? `rgba(255, 230, 0, ${p.a})`
+        : `rgba(237, 240, 227, ${p.a * 0.4})`;
+      ctx.lineWidth = 1.2;
       ctx.beginPath();
       ctx.moveTo(p.px, p.py);
       ctx.lineTo(p.x, p.y);
@@ -395,53 +390,22 @@ const spring = (initial = 0, opts = {}) => {
     });
   };
 
-  if (reducedMotion()) {
-    for (let i = 0; i < 70; i++) step(0.04, i * 0.04);
-    return;
-  }
-
-  let running = true, inView = true, tabVisible = !document.hidden;
-  let rafId = 0, last = performance.now();
-
+  let last = performance.now();
   const loop = (now) => {
-    if (!running) return;
     const dt = Math.min((now - last) / 1000, 0.05);
     last = now;
+
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.055)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
     ctx.fillRect(0, 0, w, h);
     ctx.globalCompositeOperation = 'source-over';
+
     step(dt, now * 0.001);
-    rafId = requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
   };
 
-  const sync = () => {
-    const on = inView && tabVisible;
-    if (on === running) return;
-    running = on;
-    if (on) {
-      last = performance.now();
-      rafId = requestAnimationFrame(loop);
-    } else {
-      cancelAnimationFrame(rafId);
-    }
-  };
-
-  rafId = requestAnimationFrame(loop);
-  new IntersectionObserver((entries) => {
-    entries.forEach((entry) => { inView = entry.isIntersecting; });
-    sync();
-  }).observe(hero);
-  document.addEventListener('visibilitychange', () => {
-    tabVisible = !document.hidden;
-    sync();
-  });
-
+  requestAnimationFrame(loop);
   window.addEventListener('resize', resize);
-  new MutationObserver(() => {
-    readTokens();
-    ctx.clearRect(0, 0, w, h);
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 })();
 
 // ── SVG Generated Art ─────────────────────────────────────────────────────
@@ -493,7 +457,7 @@ const spring = (initial = 0, opts = {}) => {
       { x: 60, y: 130, r: 5 }, { x: 130, y: 160, r: 8, hub: true, label: 'dsa' },
       { x: 195, y: 145, r: 5 }, { x: 30, y: 175, r: 4 }, { x: 220, y: 195, r: 4 },
     ];
-    const edges = [[0,2],[1,2],[2,3],[2,4],[3,4],[2,5],[5,6],[6,7],[4,7],[0,8],[6,8],[4,9],[7,9],[6,9]];
+    const edges = [[0, 2], [1, 2], [2, 3], [2, 4], [3, 4], [2, 5], [5, 6], [6, 7], [4, 7], [0, 8], [6, 8], [4, 9], [7, 9], [6, 9]];
     const s = svg('svg', { viewBox: '0 0 250 220', width: '100%', 'aria-hidden': 'true' });
     edges.forEach(([a, b]) => {
       const na = nodes[a], nb = nodes[b];
@@ -531,7 +495,32 @@ const spring = (initial = 0, opts = {}) => {
   }
 })();
 
-// ── Case Study Data (Subham's Actual Data) ──────────────────────────────────
+// ── Interactive Education / Skills / Milestones Tab Controller ────────────
+(() => {
+  const tabButtons = document.querySelectorAll('.edu-tab-btn');
+  const tabPanes = document.querySelectorAll('.edu-tab-pane');
+  if (!tabButtons.length || !tabPanes.length) return;
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetSelector = btn.dataset.tabTarget;
+      const targetPane = document.querySelector(targetSelector);
+      if (!targetPane) return;
+
+      tabButtons.forEach((b) => b.classList.remove('active'));
+      tabPanes.forEach((p) => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      targetPane.classList.add('active');
+
+      if ('vibrate' in navigator) {
+        try { navigator.vibrate(8); } catch (_) { }
+      }
+    });
+  });
+})();
+
+// ── Case Study Data ────────────────────────────────────────────────────────
 const CASES = {
   portfolio: {
     tag: 'Personal Website · 2026',
@@ -546,8 +535,8 @@ const CASES = {
       'Implemented View Transitions API for seamless circular clip-path theme shifts.',
       'Ensured semantic accessibility and complete fallback support for reduced motion preferences.',
     ],
-    stack: ['HTML5', 'Modern CSS', 'Vanilla JavaScript', 'Canvas API'],
-    live: 'https://github.com/max-subh/cv',
+    stack: ['HTML5', 'Modern CSS', 'Vanilla JavaScript', 'Vercel'],
+    live: 'https://subh-4uq2.vercel.app/',
   },
   birthday: {
     tag: 'Web Experience · 2026',
@@ -588,7 +577,7 @@ const CASES = {
     ],
     approach: [
       'Daily implementation of core data structures from scratch in C++ and Java.',
-      'Complexity analysis with focus on $O(n)$ space and time benchmarks.',
+      'Complexity analysis with focus on O(n) space and time benchmarks.',
       'Solving algorithmic problems consistently to sharpen debugging skills.',
     ],
     stack: ['Data Structures', 'Algorithms', 'C++', 'Java', 'Problem Solving'],
@@ -650,7 +639,7 @@ const CASE_ORDER = ['portfolio', 'birthday', 'github'];
               <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M11 1L1 11M1 1L11 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
               <span>Close</span>
             </button>
-            <span class="case__count">${isWork ? `${String(idx+1).padStart(2,'0')} / ${String(CASE_ORDER.length).padStart(2,'0')}` : 'Overview'}</span>
+            <span class="case__count">${isWork ? `${String(idx + 1).padStart(2, '0')} / ${String(CASE_ORDER.length).padStart(2, '0')}` : 'Overview'}</span>
           </header>
           <div class="case__scroll">
             <section class="case__hero">
@@ -869,8 +858,8 @@ const CASE_ORDER = ['portfolio', 'birthday', 'github'];
   };
   requestAnimationFrame(tick);
 
-  // Work card 3D tilt
-  document.querySelectorAll('.work-card').forEach((card) => {
+  // Work card & Edu card 3D tilt
+  document.querySelectorAll('.work-card, .edu-card').forEach((card) => {
     const rxS = spring(0, { stiffness: 140, damping: 18 });
     const ryS = spring(0, { stiffness: 140, damping: 18 });
     const tzS = spring(0, { stiffness: 200, damping: 22 });
@@ -888,8 +877,8 @@ const CASE_ORDER = ['portfolio', 'birthday', 'github'];
       const r = card.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width;
       const py = (e.clientY - r.top) / r.height;
-      ryS.set((px - 0.5) * 14);
-      rxS.set(-(py - 0.5) * 14);
+      ryS.set((px - 0.5) * 12);
+      rxS.set(-(py - 0.5) * 12);
     });
     card.addEventListener('mouseleave', () => {
       rxS.set(0); ryS.set(0); tzS.set(0); liftS.set(0);
@@ -903,39 +892,12 @@ const CASE_ORDER = ['portfolio', 'birthday', 'github'];
       card.style.transform = `perspective(1100px) translate3d(0, ${lift.toFixed(2)}px, 0) rotateX(${a.toFixed(2)}deg) rotateY(${b.toFixed(2)}deg) translateZ(${tz.toFixed(2)}px)`;
     });
   });
-
-  // Timeline Lean on Hover
-  const rows = [...document.querySelectorAll('.tl-row')];
-  if (rows.length >= 2) {
-    const springs = rows.map(() => spring(0, { stiffness: 200, damping: 22 }));
-    let hovered = -1;
-    const refresh = () => {
-      springs.forEach((s, i) => {
-        if (hovered < 0) { s.set(0); return; }
-        const d = i - hovered;
-        if (d === 0) s.set(0);
-        else if (Math.abs(d) === 1) s.set(d > 0 ? -3 : 3);
-        else s.set(0);
-      });
-    };
-    rows.forEach((r, i) => {
-      r.style.willChange = 'transform';
-      r.addEventListener('mouseenter', () => { hovered = i; refresh(); });
-      r.addEventListener('mouseleave', () => { if (hovered === i) { hovered = -1; refresh(); } });
-    });
-    consumers.push((dt) => {
-      springs.forEach((s, i) => {
-        const v = s.step(dt);
-        rows[i].style.transform = `translateY(${v.toFixed(2)}px)`;
-      });
-    });
-  }
 })();
 
 // ── Card Cursor Spotlight ─────────────────────────────────────────────────
 (() => {
   if (window.matchMedia('(pointer: coarse)').matches) return;
-  document.querySelectorAll('.work-card, .exp-card, .ai-feature').forEach((card) => {
+  document.querySelectorAll('.work-card, .exp-card, .edu-card, .ai-feature').forEach((card) => {
     card.addEventListener('pointermove', (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -944,21 +906,268 @@ const CASE_ORDER = ['portfolio', 'birthday', 'github'];
   });
 })();
 
-// ── Infinite Marquee Loop Cloner ──────────────────────────────────────────
+// ── Persistent Projects with Temporary Admin Button ──────────────────────
 (() => {
-  const track = document.querySelector('[data-marquee-track]');
-  if (!track) return;
-  const group = track.querySelector('.marquee__group');
-  if (!group) return;
-  const SPEED = 60;
-  const fill = () => {
-    const gw = group.scrollWidth;
-    if (!gw) return;
-    let need = Math.max(2, Math.ceil((window.innerWidth * 2) / gw));
-    if (need % 2) need++;
-    while (track.children.length < need) track.appendChild(group.cloneNode(true));
-    track.style.setProperty('--marquee-d', `${((gw * track.children.length) / 2 / SPEED).toFixed(1)}s`);
+  const SECRET_KEY = 'subham24';
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const showAdminButton = urlParams.get('admin') === SECRET_KEY;
+
+  const trigger = document.getElementById('admin-trigger');
+  const modal = document.getElementById('admin-modal');
+  const openBtn = document.getElementById('admin-open-btn');
+  const closeBtn = document.getElementById('admin-close-btn');
+  const form = document.getElementById('admin-project-form');
+  const track = document.querySelector('[data-work-track]');
+
+  if (showAdminButton && trigger) {
+    trigger.style.display = 'block';
+  } else if (trigger) {
+    trigger.style.display = 'none';
+  }
+
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', () => { modal.style.display = 'grid'; });
+  }
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+  }
+
+  const createCardElement = (proj, num) => {
+    const article = document.createElement('article');
+    article.className = 'work-card js-physics';
+    article.innerHTML = `
+      <div class="work-card__hit">
+        <div class="work-card__head">
+          <span>Project</span>
+          <span class="work-card__num">${String(num).padStart(2, '0')}</span>
+        </div>
+        <div class="work-card__art" data-mesh-art></div>
+        <div class="work-card__body">
+          <h3 class="work-card__title">${proj.title}</h3>
+          <p class="work-card__blurb">${proj.desc}</p>
+          <div class="work-card__tags">
+            ${proj.tags.map(t => `<span>${t.trim()}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="work-card__foot">
+        ${proj.live ? `<a class="work-card__action work-card__action--primary" href="${proj.live}" target="_blank" rel="noreferrer">Visit Live ↗</a>` : ''}
+        ${proj.github ? `<a class="work-card__action" href="${proj.github}" target="_blank" rel="noreferrer">GitHub ↗</a>` : ''}
+      </div>
+    `;
+    return article;
   };
-  fill();
-  window.addEventListener('resize', fill);
+
+  const loadCustomProjects = () => {
+    if (!track) return;
+    const saved = JSON.parse(localStorage.getItem('custom_projects') || '[]');
+    saved.forEach((proj, idx) => {
+      const card = createCardElement(proj, idx + 4);
+      track.appendChild(card);
+    });
+  };
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const tagsInput = document.getElementById('proj-tags').value;
+      const newProj = {
+        title: document.getElementById('proj-title').value,
+        desc: document.getElementById('proj-desc').value,
+        tags: tagsInput ? tagsInput.split(',') : ['Web'],
+        live: document.getElementById('proj-live').value,
+        github: document.getElementById('proj-github').value,
+      };
+
+      const existing = JSON.parse(localStorage.getItem('custom_projects') || '[]');
+      existing.push(newProj);
+      localStorage.setItem('custom_projects', JSON.stringify(existing));
+
+      if (track) {
+        const card = createCardElement(newProj, existing.length + 3);
+        track.appendChild(card);
+      }
+
+      form.reset();
+      modal.style.display = 'none';
+
+      if (trigger) trigger.style.display = 'none';
+      window.history.replaceState({}, document.title, window.location.pathname);
+
+      alert('Project save ho gaya! Add karne ka button ab hat chuka hai.');
+    });
+  }
+
+  loadCustomProjects();
+})();
+
+// ── Feature 5: Web Audio API Procedural UI Sound Engine ───────────────────
+(() => {
+  let audioCtx = null;
+  let soundEnabled = localStorage.getItem('sound_enabled') === 'true';
+
+  const soundBtn = document.querySelector('[data-sound-toggle]');
+  const iconOn = soundBtn?.querySelector('.sound-icon-on');
+  const iconOff = soundBtn?.querySelector('.sound-icon-off');
+
+  const updateIcons = () => {
+    if (!iconOn || !iconOff) return;
+    iconOn.style.display = soundEnabled ? 'block' : 'none';
+    iconOff.style.display = soundEnabled ? 'none' : 'block';
+  };
+  updateIcons();
+
+  const initAudio = () => {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+  };
+
+  const playTone = (freq, type, duration, gainLevel) => {
+    if (!soundEnabled || !audioCtx) return;
+    try {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(gainLevel, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (_) { }
+  };
+
+  const playClick = () => playTone(800, 'sine', 0.04, 0.03);
+  const playHover = () => playTone(300, 'triangle', 0.03, 0.008);
+  const playTheme = () => playTone(520, 'sine', 0.08, 0.04);
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      initAudio();
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('sound_enabled', String(soundEnabled));
+      updateIcons();
+      if (soundEnabled) playClick();
+    });
+  }
+
+  window.addEventListener('pointerdown', (e) => {
+    if (!audioCtx) initAudio();
+    if (e.target.closest('a, button, [data-open-case], .edu-tab-btn')) {
+      playClick();
+    }
+  });
+
+  document.querySelectorAll('a, button, .work-card, .exp-card, .edu-card, .edu-tab-btn').forEach((el) => {
+    el.addEventListener('pointerenter', () => {
+      if (audioCtx) playHover();
+    });
+  });
+
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', playTheme);
+})();
+
+// ── Feature 2: Realtime GitHub Telemetry API Fetcher ───────────────────────
+(() => {
+  const USERNAME = 'max-subh';
+  const repoCountEl = document.getElementById('gh-repos');
+  const followersEl = document.getElementById('gh-followers');
+  const latestEl = document.getElementById('gh-latest');
+  const statusEl = document.getElementById('gh-status');
+
+  if (!repoCountEl) return;
+
+  async function fetchGitHubStats() {
+    try {
+      const userRes = await fetch(`https://api.github.com/users/${USERNAME}`);
+      if (!userRes.ok) throw new Error('API Rate limit or not found');
+      const userData = await userRes.json();
+
+      repoCountEl.textContent = userData.public_repos || '0';
+      followersEl.textContent = userData.followers || '0';
+
+      const reposRes = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=1`);
+      if (reposRes.ok) {
+        const reposData = await reposRes.json();
+        if (reposData.length > 0) {
+          latestEl.innerHTML = `Latest commit: <a href="${reposData[0].html_url}" target="_blank" style="color: var(--accent); text-decoration: underline;">${reposData[0].name}</a>`;
+        }
+      }
+
+      if (statusEl) {
+        statusEl.textContent = 'ONLINE';
+        statusEl.style.color = 'var(--accent)';
+      }
+    } catch (_) {
+      if (statusEl) statusEl.textContent = 'CACHED';
+      repoCountEl.textContent = '3+';
+      followersEl.textContent = 'Active';
+      latestEl.textContent = 'Repositories available on GitHub profile';
+    }
+  }
+
+  fetchGitHubStats();
+})();
+
+// ── Smooth Velocity-Based Haptic Scroll Ticks ──────────────────────────────
+(() => {
+  if (!('vibrate' in navigator)) return;
+
+  let lastY = window.scrollY;
+  let accumulated = 0;
+  let isTicking = false;
+  let lastVibeTime = 0;
+
+  const DISTANCE_THRESHOLD = 180;
+  const MIN_INTERVAL_MS = 60;
+  const PULSE_DURATION = 4;
+
+  const smoothTick = () => {
+    const currentY = window.scrollY;
+    const delta = Math.abs(currentY - lastY);
+    lastY = currentY;
+    accumulated += delta;
+
+    const now = performance.now();
+    if (accumulated >= DISTANCE_THRESHOLD) {
+      if (now - lastVibeTime >= MIN_INTERVAL_MS) {
+        try {
+          navigator.vibrate(PULSE_DURATION);
+          lastVibeTime = now;
+        } catch (_) { }
+      }
+      accumulated = 0;
+    }
+
+    isTicking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!isTicking) {
+      requestAnimationFrame(smoothTick);
+      isTicking = true;
+    }
+  }, { passive: true });
+
+  const sectionSnapObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        try {
+          navigator.vibrate([6, 30, 4]);
+        } catch (_) { }
+      }
+    });
+  }, { threshold: 0.35 });
+
+  document.querySelectorAll('section, .work-card').forEach((el) => {
+    sectionSnapObserver.observe(el);
+  });
 })();
